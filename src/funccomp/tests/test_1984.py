@@ -61,7 +61,6 @@ class FuncCompTests(unittest.TestCase):
 
         f: FunctionType
         f = funccomp(out)
-
         self.assertEqual(f.__name__, out.__name__)
         self.assertEqual(f.__doc__, out.__doc__)
         self.assertEqual(f.__module__, out.__module__)
@@ -82,7 +81,6 @@ class FuncCompTests(unittest.TestCase):
 
         f: FunctionType
         f = funccomp(out, inner)
-
         with self.assertRaises(ValueError):
             f(10)
 
@@ -95,7 +93,6 @@ class FuncCompTests(unittest.TestCase):
 
         f: FunctionType
         f = funccomp(out, inner)
-
         with self.assertRaises(RuntimeError):
             f(1)
 
