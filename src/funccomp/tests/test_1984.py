@@ -36,7 +36,6 @@ class FuncCompTests(unittest.TestCase):
             return x * 10
 
         f: FunctionType
-
         f = funccomp(out)
         self.assertEqual(f(3), out(3))
         self.assertEqual(f(0), out(0))
@@ -95,7 +94,6 @@ class FuncCompTests(unittest.TestCase):
             raise RuntimeError("outer failed")
 
         f: FunctionType
-
         f = funccomp(out, inner)
 
         with self.assertRaises(RuntimeError):
