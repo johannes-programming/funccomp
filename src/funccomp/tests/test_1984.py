@@ -6,8 +6,6 @@ from typing import *
 
 from funccomp.core import funccomp
 
-__all__ = ["funccomp"]
-
 
 def _double(x: int) -> int:
     return 2 * x
