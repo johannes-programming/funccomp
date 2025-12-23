@@ -8,6 +8,7 @@ __all__ = ["funccomp"]
 
 def funccomp(
     outmost: Callable,
+    /,
     *inners: Callable,
 ) -> types.FunctionType:
     funcs: tuple[Callable]

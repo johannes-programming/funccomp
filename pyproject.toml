@@ -24,7 +24,7 @@ keywords = []
 name = "funccomp"
 readme = "README.rst"
 requires-python = ">=3.11"
-version = "0.1.0.dev3"
+version = "0.1.0a0"
 
 [project.license]
 file = "LICENSE.txt"
