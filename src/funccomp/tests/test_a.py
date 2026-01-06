@@ -4,6 +4,8 @@ import unittest
 from types import FunctionType
 from typing import *
 
+from identityfunction import identityfunction
+
 from funccomp.core import funccomp
 
 
@@ -20,16 +22,23 @@ def _square(x: int) -> int:
 
 
 def _pack(*args: Any, **kwargs: Any) -> tuple[tuple[Any, ...], dict[str, Any]]:
+    args: tuple[Any, ...]
+    kwargs: dict[str, Any]
     return args, kwargs
 
 
 def _count_args_kwargs(packed: tuple[tuple[Any, ...], dict[str, Any]]) -> int:
+    args: tuple[Any, ...]
+    kwargs: dict[str, Any]
     args, kwargs = packed
     return len(args) + len(kwargs)
 
 
 class FuncCompTests(unittest.TestCase):
-    def test_single_function_behaves_like_outmost(self) -> None:
+    def test_identity(self: Self) -> None:
+        self.assertTrue(funccomp() is identityfunction)
+
+    def test_single_function_behaves_like_outmost(self: Self) -> None:
         def out(x: int) -> int:
             return x * 10
 
@@ -38,21 +47,21 @@ class FuncCompTests(unittest.TestCase):
         self.assertEqual(f(3), out(3))
         self.assertEqual(f(0), out(0))
 
-    def test_simple_composition_order(self) -> None:
+    def test_simple_composition_order(self: Self) -> None:
         # f(x) = square(double(increment(x))) = (2 * (x + 1)) ** 2
         f: FunctionType
         f = funccomp(_square, _double, _increment)
         self.assertEqual(f(3), (2 * (3 + 1)) ** 2)  # 64
         self.assertEqual(f(0), (2 * (0 + 1)) ** 2)  # 4
 
-    def test_args_and_kwargs_passed_only_to_innermost(self) -> None:
+    def test_args_and_kwargs_passed_only_to_innermost(self: Self) -> None:
         # innermost(_pack) receives args/kwargs; others receive previous result
         f: FunctionType
         f = funccomp(_count_args_kwargs, _pack)
         self.assertEqual(f(1, 2, a=3), 3)
         self.assertEqual(f(), 0)
 
-    def test_metadata_copied_from_outmost(self) -> None:
+    def test_metadata_copied_from_outmost(self: Self) -> None:
         def out(x: int, y: str = "a") -> bool:
             """example docstring"""
             return bool(x and y)
@@ -65,12 +74,12 @@ class FuncCompTests(unittest.TestCase):
         # signature should look like the outmost's thanks to functools.wraps
         self.assertEqual(inspect.signature(f), inspect.signature(out))
 
-    def test_returns_function_type(self) -> None:
+    def test_returns_function_type(self: Self) -> None:
         f: FunctionType
         f = funccomp(_square, _increment)
         self.assertIsInstance(f, types.FunctionType)
 
-    def test_exception_propagation_from_innermost(self) -> None:
+    def test_exception_propagation_from_innermost(self: Self) -> None:
         def inner(_: Any) -> Any:
             raise ValueError("boom")
 
@@ -82,7 +91,7 @@ class FuncCompTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             f(10)
 
-    def test_exception_propagation_from_outer(self) -> None:
+    def test_exception_propagation_from_outer(self: Self) -> None:
         def inner(x: int) -> int:
             return x + 1
 
