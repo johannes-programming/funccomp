@@ -9,24 +9,59 @@
                 <a>funccomp</a>
                 <p>Version:
                     <select id="version">
-                        <option selected>0.1.0a</option>
+                        <option>0.1.0a</option>
+                        <option selected>0.2.0</option>
                     </select>
                 </p>
             </dt>
             <dd>
                 <dl class="heading1">
                     <dt id="intro">Introduction</dt>
-                    <dd id="introCorpus">
+                    <dd class="introCorpus" version="0.1.0a">
                         <p>
                             This project allows to create composite functions from given callables.
                         </p>
+                    </dd>
+                    <dd class="introCorpus" version="0.2.0">
                     </dd>
                     <dt id="links">Links</dt>
                     <dd id="linksCorpus"></dd>
                     <dt id="install">Installation</dt>
                     <dd id="installCorpus"></dd>
-                    <dt id="testing">Testing</dt>
-                    <dd id="testingCorpus"></dd>
+                    <dt id="features">Features</dt>
+                    <dd>
+                        <dl class="heading4" version="0.1.0a">
+                            <dt>funccomp.funccomp</dt>
+                            <dd></dd>
+                            <dt>funccomp.test()</dt>
+                            <dd class="testingCorpus"></dd>
+                        </dl>
+                        <dl class="heading4" version="0.2.0">
+                            <dt>funccomp.BaseComposite(*factors:Any)</dt>
+                            <dd>
+                                <dl class="heading4">
+                                    <dt>factors:list</dt>
+                                    <dd></dd>
+                                </dl>
+                            </dd>
+                            <dt>funccomp.Composite(*factors:Any)</dt>
+                            <dd>
+                                <dl class="heading4">
+                                    <dt>factors:list</dt>
+                                    <dd></dd>
+                                </dl>
+                            </dd>
+                            <dt>funccomp.StarComposite(*factors:Any)</dt>
+                            <dd>
+                                <dl class="heading4">
+                                    <dt>factors:list</dt>
+                                    <dd></dd>
+                                </dl>
+                            </dd>
+                            <dt>funccomp.test()</dt>
+                            <dd class="testingCorpus"></dd>
+                        </dl>
+                    </dd>
                     <dt id="license">License</dt>
                     <dd id="licenseCorpus"></dd>
                     <dt id="impressum">Impressum</dt>
