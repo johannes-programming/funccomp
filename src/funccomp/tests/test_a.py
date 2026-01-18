@@ -4,11 +4,16 @@ from unittest.mock import patch
 
 from funccomp.core.Composite import Composite
 
+__all__ = ["TestBaseComposite"]
+
 
 class TestBaseComposite(unittest.TestCase):
 
     @patch("funccomp.core.BaseComposite.identityfunction")
-    def test_call_with_no_factors_uses_identity(self: Self, mock_identity):
+    def test_call_with_no_factors_uses_identity(self: Self, mock_identity: Any) -> None:
+        comp: Composite
+        result: Any
+
         mock_identity.return_value = "identity_result"
 
         comp = Composite()  # no factors

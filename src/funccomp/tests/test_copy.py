@@ -4,6 +4,8 @@ from typing import *
 from funccomp.core.Composite import Composite
 from funccomp.core.StarComposite import StarComposite
 
+__all__ = ["TestCompositeCopy", "TestStarCompositeCopy"]
+
 
 class TestCompositeCopy(unittest.TestCase):
     def test_copy_returns_same_type_and_equal_factors(self: Self) -> None:

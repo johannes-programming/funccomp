@@ -4,6 +4,8 @@ from typing import *
 from funccomp.core.Composite import Composite
 from funccomp.core.StarComposite import StarComposite
 
+__all__ = ["TestBaseComposite", "TestComposite", "TestStarComposite"]
+
 
 class TestBaseComposite(unittest.TestCase):
     def test_init_stores_factors(self: Self) -> None:

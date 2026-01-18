@@ -3,6 +3,8 @@ from typing import *
 
 from funccomp.core.Composite import Composite
 
+__all__ = ["TestCompositeCmp"]
+
 
 class TestCompositeCmp(unittest.TestCase):
     def test_equal_same_type_and_factors(self: Self) -> None:
