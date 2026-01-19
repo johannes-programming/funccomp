@@ -65,10 +65,6 @@ class Composite(Copyable):
             stars=self.stars,
         )
 
-    @setdoc.basic
-    def __rpow__(self: Self, other: SupportsIndex) -> Self:
-        return self**other
-
     def _factor(self: Self, index: int, /, *args: Any, **kwargs: Any) -> Any:
         if callable(self.factors[index]):
             return self.factors[index](*args, **kwargs)
