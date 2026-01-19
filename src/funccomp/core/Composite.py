@@ -47,7 +47,7 @@ class Composite(Copyable):
 
     @setdoc.basic
     def __pow__(self: Self, other: SupportsIndex) -> Self:
-        return type(self)(*(self.factors * other))
+        return type(self)(*(self.factors * other), stars=self.stars)
 
     @setdoc.basic
     def __ipow__(self: Self, other: SupportsIndex) -> Self:
