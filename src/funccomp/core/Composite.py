@@ -31,7 +31,7 @@ class Composite(Copyable):
         return ans
 
     @setdoc.basic
-    def __eq__(self: Self, other: Any) -> Any:
+    def __eq__(self: Self, other: object) -> bool:
         if type(self) is not type(other):
             return False
         if self.factors != other.factors:
@@ -45,17 +45,28 @@ class Composite(Copyable):
         self._factors = list(factors)
         self.stars = stars
 
-    @setdoc.basic
-    def __pow__(self: Self, other: SupportsIndex) -> Self:
-        return type(self)(*(self.factors * other), stars=self.stars)
 
     @setdoc.basic
     def __ipow__(self: Self, other: SupportsIndex) -> Self:
-        data: list
-        data = self.factors * other
+        data:list
+        factor:Any
+        index:int
+        index = operator.index(other)
+        if index >= 0:
+            data = self.factors * index
+        else:
+            data = []
+            for factor in self.factors:
+                data.append(factor ** -1)
+            index *= -1
+            data *= index
         self.factors.clear()
         self.factors.extend(data)
         return self
+
+    @setdoc.basic
+    def __pow__(self: Self, other: SupportsIndex) -> Self:
+        return self.copy().__ipow__(other)
 
     @setdoc.basic
     def __repr__(self: Self) -> str:
